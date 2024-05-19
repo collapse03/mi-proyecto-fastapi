@@ -1,0 +1,16 @@
+# Ignorar la carpeta node_modules
+node_modules/
+
+# Ignorar los archivos de log
+*.log
+
+# Ignorar los archivos de configuración del editor
+.vscode/
+.idea/
+
+# Ignorar los archivos de construcción
+dist/
+build/
+out/
+venv/
+**/__pycache__/

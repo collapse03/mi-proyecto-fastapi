@@ -1,0 +1,13 @@
+cffi==1.16.0
+click==7.1.2
+cryptography==42.0.7
+dnspython==2.6.1
+ecdsa==0.19.0
+h11==0.14.0
+pyasn1==0.6.0
+pycparser==2.22
+pymongo==4.7.2
+rsa==4.9
+six==1.16.0
+starlette==0.13.6
+typing_extensions==4.11.0
