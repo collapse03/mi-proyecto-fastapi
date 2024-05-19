@@ -1,14 +1,6 @@
 # Mi Proyecto FastAPI
 
-Este es un proyecto de ejemplo que utiliza FastAPI para crear una API REST.
-
-## Estructura del Proyecto
-
-- `app/main.py`: Punto de entrada de la aplicación.
-- `app/models/example_model.py`: Define los modelos de la base de datos.
-- `app/routes/example_route.py`: Define las rutas de la aplicación.
-- `app/schemas/example_schema.py`: Define los esquemas Pydantic para la validación de datos.
-- `tests/test_main.py`: Contiene las pruebas unitarias para la aplicación.
+Este proyecto de ejemplo tiene como objetivo realizar un login de un usuario registrador por username unico creado en una base de datos no relacional. Se utiliza un hash para la contraseña con la ayuda de una libreria de Python.
 
 ## Instalación
 
@@ -36,4 +28,3 @@ Para ejecutar las pruebas, use el siguiente comando:
 pytest
 ```
 ```
-Por favor, recuerda que este es solo un ejemplo y debes adaptarlo a las necesidades de tu proyecto.
