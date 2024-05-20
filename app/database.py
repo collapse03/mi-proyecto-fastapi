@@ -8,8 +8,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["streaming_anime"]
 users_collection = db["users"]
 
-def get_user(username):
-    user = users_collection.find_one({"username": username})
+def get_user(filter = str, username = str):
+    user = users_collection.find_one({filter: username})
     return user
 
 def add_user(user: User):

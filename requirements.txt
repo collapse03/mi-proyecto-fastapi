@@ -4,3 +4,5 @@ pydantic
 sqlalchemy
 passlib
 python-jose[cryptography]
+fastapi-mail
+itsdangerous

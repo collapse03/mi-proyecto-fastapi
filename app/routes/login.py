@@ -1,11 +1,14 @@
 from datetime import timedelta
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi_mail import FastMail, MessageSchema
 from app.services.services_login import services_login
-from ..schemas.example_schema import Token
+from app.services.services_utils import services_utils
+from ..schemas.example_schema import EmailSchema, Token
 from fastapi import APIRouter
 from ..database import get_user, add_user
 from ..models.user_model import User
+from itsdangerous import URLSafeTimedSerializer
 
 #CONFIGURATION VARIABLES
 
@@ -32,10 +35,33 @@ def login_for_access_token(user: User):
 
 @router.post("/register", response_model=User)
 def register_user(user: User):
-    if get_user(user.username):
+    if get_user("username", user.username):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Username already registered",
         )
+    if get_user("email", user.email):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered",
+        )
     add_user(user)
     return user
+
+@router.post("/password-recovery")
+async def recover_password(email: EmailSchema):
+    obj_services_utils = services_utils()
+    s = URLSafeTimedSerializer('your-secret-key')
+    user = get_user("email", email.email)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found",
+        )
+    
+    token = s.dumps(email.email, salt='password-recovery')
+    url = f'http://your-web-site.com/reset-password/{token}'
+    await obj_services_utils.send_emails(subject="Password recovery", 
+                                        recipients=email.email, 
+                                        body=f"Click on the link to recover your password: {url}")
+    return {"message": "Password recovery email sent"}
