@@ -26,7 +26,7 @@ class services_login:
         return encoded_jwt
 
     def authenticate_user(self, username: str, password: str):
-        user = get_user(username)
+        user = get_user("username", username)
         if not user:
             return False
         if not pwd_context.verify(password, user["password"]):
