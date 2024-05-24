@@ -6,6 +6,11 @@ class User(BaseModel):
     password: str
     is_active: bool
     email_confirmation: Optional[bool] = False
+    name: Optional[str] = None
+    lastName: Optional[str] = None
+    age: Optional[int] = None
+    phone: Optional[str] = None
+    photo: Optional[str] = None
 
 class Token(BaseModel):
     access_token: str
